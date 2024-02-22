@@ -1,33 +1,50 @@
 FROM ubuntu:20.10
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && \
-    apt install dbus-x11 -y  && \
-    apt install sudo -y  && \ 
-    apt install bash -y  && \ 
-    apt install net-tools -y  && \
-    apt install novnc -y  && \ 
-    apt install x11vnc -y  && \ 
-    apt install xvfb -y  && \
-	apt install chromium-browser -y  && \
-    apt install supervisor -y  && \ 
-    apt install xfce4 -y  && \
-    apt install gnome-shell -y  && \
-    apt install ubuntu-gnome-desktop -y  && \
-    apt install gnome-session -y  && \ 
-    apt install gdm3 -y  && \ 
-    apt install tasksel -y  && \
-    apt install ssh  -y  && \
-    apt install terminator -y  && \
-    apt install git -y  && \
-    apt install nano -y  && \
-    apt install curl -y  && \
-    apt install wget -y  && \ 
-    apt install zip -y  && \
-    apt install unzip -y  && \
-    apt install falkon -y  && \
-    apt-get autoclean -y  && \
-    apt-get autoremove
+RUN apt-get upgrade
+RUN set -ex; \
+    apt-get update \
+    && apt-get install -y --no-install-recommends \
+        dbus-x11 \
+        nautilus \
+        gedit \
+        expect \
+        sudo \
+        vim \
+	vlc \
+        bash \
+        net-tools \
+        novnc \
+        xfce4 \
+	socat \
+        x11vnc \
+	xvfb \
+        supervisor \
+        curl \
+        git \
+	pulseaudio \
+        wget \
+        g++ \
+	unzip \
+        ssh \
+	ffmpeg \
+	chromium-browser \
+	firefox \
+        terminator \
+        htop \
+        gnupg2 \
+	locales \
+	xfonts-intl-chinese \
+	fonts-wqy-microhei \  
+	ibus-pinyin \
+	ibus \
+	ibus-clutter \
+	ibus-gtk \
+	ibus-gtk3 \
+	ibus-qt4 \
+	openssh-server \
+    && apt-get autoclean \
+    && apt-get autoremove \
 
 COPY novnc.zip /novnc.zip
 COPY . /system
