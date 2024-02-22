@@ -46,11 +46,10 @@ RUN set -ex; \
     && apt-get autoclean \
     && apt-get autoremove \
 
-COPY novnc.zip /novnc.zip
+COPY run.sh
 COPY . /system
 
-RUN unzip -o /novnc.zip -d /usr/share
-RUN rm /novnc.zip
+RUN rm /run.sh
 
 RUN chmod +x /system/conf.d/websockify.sh
 RUN chmod +x /system/supervisor.sh
